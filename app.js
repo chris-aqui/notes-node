@@ -1,11 +1,23 @@
-console.log('starting app.js file');
-
+console.log('Starting app.js file');
+//
 const fs = require('fs');
-const os = require('os');
 const _ = require('lodash');
+const yargs = require('yargs');
+//
+const argv = yargs.argv;
 const notes = require('./notes'); // using a relative path
 //
-console.log("results: ", notes.add(9,-2));
+let command = process.argv[2];
+console.log('Command: ',command);
+console.log('Process: ',process.argv);
+console.log('Yargs: ',argv);
 //
-// let user = os.userInfo();
-// fs.appendFile('greetings.txt', `Hello ${user.username}! You are ${notes.age}.`);
+command === 'add' ?
+console.log('Adding something') :
+command === 'list' ?
+console.log('Listing all notes') :
+command === 'read' ?
+console.log('Reading note') :
+command === 'remove' ?
+console.log('Removing a note') :
+console.log('Not a vaild command');
