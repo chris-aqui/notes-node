@@ -7,17 +7,16 @@ const yargs = require('yargs');
 const argv = yargs.argv;
 const notes = require('./notes'); // using a relative path
 //
-let command = process.argv[2];
+let command = argv._[0];
 console.log('Command: ',command);
-console.log('Process: ',process.argv);
 console.log('Yargs: ',argv);
 //
 command === 'add' ?
-console.log('Adding something') :
+notes.addNote(argv.title, argv.body) : // argv in this cse comes from the yargs... and the --title and --body flags
 command === 'list' ?
-console.log('Listing all notes') :
+notes.getAll() :
 command === 'read' ?
-console.log('Reading note') :
+notes.getNote(argv.title) :
 command === 'remove' ?
-console.log('Removing a note') :
+notes.removeNote(argv.title) :
 console.log('Not a vaild command');
